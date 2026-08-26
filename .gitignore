@@ -75,3 +75,11 @@ AGENTS.local.md
 
 # Daintree
 .daintree/*.local.json
+
+# Next.js
+node_modules/
+.next/
+.vercel/
+out/
+
+.vercel
