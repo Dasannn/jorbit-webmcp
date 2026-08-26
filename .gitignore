@@ -18,6 +18,13 @@ id_ed25519
 *.log
 logs/
 
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.pycache/
+
 # macOS
 .DS_Store
 ._*
