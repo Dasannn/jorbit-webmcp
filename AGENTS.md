@@ -60,19 +60,28 @@ rationale in `docs/constitution.md` §5 and §8.
 
 ## Current stage
 
-Planning. Constitution frozen; `spec.md` is next but **blocked**.
+Planning. Constitution frozen. Design audit approved (`docs/design-audit.md`). B1 verified,
+B2 executed. `spec.md` is next and **not yet started — awaiting owner approval to write it**.
 
 Two execution blockers must clear before the spec closes (`docs/constitution.md` §11):
 
 | Blocker | Status | Owner |
 |---|---|---|
-| **B1 — WebMCP vertical slice** end-to-end in the target ChatGPT browser | NOT VERIFIED | Human — needs a real browser |
-| **B2 — Data Coverage Audit** across JobsCollider, Arbeitnow, Jobicy | NOT EXECUTED | Agent-runnable |
+| **B1 — WebMCP vertical slice** end-to-end in the target ChatGPT browser | **VERIFIED 2026-08-26** — owner-confirmed end-to-end in the target browser. Contract in `spike-webMCP/ARCHITECTURE.md`. | Human — needs a real browser |
+| **B2 — Data Coverage Audit** across JobsCollider, Arbeitnow, Jobicy | **EXECUTED 2026-08-26** — results in `docs/data-coverage-audit.md`, raw output in `docs/data/`. | Agent-runnable |
 
 Do not mark either as passed without explicit owner confirmation.
 
-**Track A — Engineering** is blocked by B1: job API integration, O\*NET work, production UI,
-Skill Unlock engine, any WebMCP-dependent production logic.
+This table is the blocker registry. `docs/constitution.md` §11 is frozen and still reads
+NOT VERIFIED / NOT EXECUTED by design — it records the state at freeze time, not current status.
+
+**One B1 sub-measurement is still outstanding:** the target browser's real viewport. The spike
+now renders it on the page (`spike-webMCP/app/page.tsx`); it needs a redeploy and one reading in
+the ChatGPT built-in browser. Until then the responsive target (D16) stays undecided.
+
+**Track A — Engineering** was blocked by B1: job API integration, O\*NET work, production UI,
+Skill Unlock engine, any WebMCP-dependent production logic. B1 is now verified — but production
+UI remains gated on owner approval of `docs/spec.md`, which is not written.
 
 **Track B — Design** may proceed in parallel: visual identity, design system, UX exploration,
 mockups, interactive prototypes, Career Orbit / Constraint Debugger / Opportunity Unlock
