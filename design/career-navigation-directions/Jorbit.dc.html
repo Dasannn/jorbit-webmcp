@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet data-dc-atomics>
+<meta name="design_doc_mode" content="canvas">
+<link rel="stylesheet" href="_ds/nocturne-8f1493b5-7690-4ba2-b0bb-84d10f34256d/styles.css">
+<script src="_ds/nocturne-8f1493b5-7690-4ba2-b0bb-84d10f34256d/_ds_bundle.js"></script>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap">
+<style>
+body{margin:0;background:#0c0d14;font-family:"Inter",system-ui,sans-serif;font-feature-settings:"tnum" 1,"ss01" 1;-webkit-font-smoothing:antialiased}
+a{color:var(--color-accent-300);text-decoration:none}
+a:hover{color:var(--color-accent-200)}
+@keyframes jb-alive{0%,100%{opacity:.32}50%{opacity:.6}}
+</style>
+</helmet>
+
+<div style="padding:36px 40px 60px">
+  <div style="display:flex;align-items:baseline;gap:14px;margin:0 0 8px">
+    <span style="font:500 15px/1.2 'Inter';color:#e9e9ed;letter-spacing:-.01em">Jorbit — refined direction</span>
+    <span style="font:400 13px/1.2 'Inter';color:rgba(233,233,237,.4)">Orbital foundation (A) with the clarity of the constraint ledger (C)</span>
+  </div>
+  <p style="margin:0 0 22px;max-width:760px;font:400 13px/1.65 'Inter';color:rgba(233,233,237,.42)">Live screen — the three states are one interface. Click a body in the orbit to select it; switch <em>Location</em> to Flexible in the constraint strip to run the simulation and watch the boundary expand.</p>
+
+  <div style="display:flex;gap:10px;margin:0 0 20px">
+    <button onClick="{{ showOrbit }}" style="padding:8px 14px;border-radius:7px;border:1px solid rgba(233,233,237,.14);background:transparent;font:400 12.5px 'Inter';color:rgba(233,233,237,.7);cursor:pointer" style-hover="border-color:rgba(181,171,252,.5);color:#e9e9ed">1 · Career Orbit</button>
+    <button onClick="{{ showSelected }}" style="padding:8px 14px;border-radius:7px;border:1px solid rgba(233,233,237,.14);background:transparent;font:400 12.5px 'Inter';color:rgba(233,233,237,.7);cursor:pointer" style-hover="border-color:rgba(181,171,252,.5);color:#e9e9ed">2 · Selected opportunity</button>
+    <button onClick="{{ showSim }}" style="padding:8px 14px;border-radius:7px;border:1px solid rgba(233,233,237,.14);background:transparent;font:400 12.5px 'Inter';color:rgba(233,233,237,.7);cursor:pointer" style-hover="border-color:rgba(217,162,95,.5);color:#e9e9ed">3 · Simulation &amp; unlock</button>
+  </div>
+
+  <div style="width:1440px;height:900px;position:relative;overflow:hidden;border-radius:12px;border:1px solid rgba(233,233,237,.09);background:radial-gradient(115% 85% at 47% 44%,#1a1c2b 0%,#141621 45%,#0e0f17 100%);box-shadow:0 30px 90px rgba(0,0,0,.55)">
+
+    <div style="position:absolute;inset:0;opacity:.45;background-image:radial-gradient(1px 1px at 14% 22%,rgba(233,233,237,.4),transparent),radial-gradient(1px 1px at 71% 15%,rgba(233,233,237,.3),transparent),radial-gradient(1px 1px at 39% 86%,rgba(233,233,237,.24),transparent),radial-gradient(1px 1px at 84% 74%,rgba(233,233,237,.3),transparent),radial-gradient(1px 1px at 57% 62%,rgba(233,233,237,.18),transparent)"></div>
+
+    <div style="position:absolute;top:0;left:0;right:0;height:58px;display:flex;align-items:center;justify-content:space-between;padding:0 24px;border-bottom:1px solid rgba(233,233,237,.06)">
+      <div style="display:flex;align-items:center;gap:10px">
+        <div style="width:16px;height:16px;border-radius:50%;border:1.5px solid #9184d9;position:relative"><div style="position:absolute;width:4px;height:4px;border-radius:50%;background:#d2cefd;top:-2.5px;left:50%;margin-left:-2px"></div></div>
+        <span style="font:500 15px/1 'Inter';color:#e9e9ed;letter-spacing:-.005em">Jorbit</span>
+      </div>
+      <div style="display:flex;align-items:center;gap:18px">
+        <span style="font:400 12.5px/1 'Inter';color:rgba(233,233,237,.38)">{{ agentNote }}</span>
+        <div style="width:26px;height:26px;border-radius:50%;background:#292b31;border:1px solid rgba(233,233,237,.12)"></div>
+      </div>
+    </div>
+
+    <div style="position:absolute;top:58px;left:0;width:252px;bottom:0;padding:30px 26px;display:flex;flex-direction:column;gap:28px">
+      <div>
+        <div style="font:500 20px/1.25 'Inter';color:#e9e9ed;letter-spacing:-.015em">Maya Okonjo</div>
+        <div style="margin-top:6px;font:400 13px/1.5 'Inter';color:rgba(233,233,237,.45)">Product Analyst · 4 years<br>Lagos, open to Europe</div>
+      </div>
+
+      <div style="height:1px;background:linear-gradient(90deg,rgba(233,233,237,.13),transparent)"></div>
+
+      <div style="display:flex;flex-direction:column;gap:22px">
+        <div>
+          <div style="display:flex;align-items:baseline;gap:9px">
+            <span style="font:300 44px/1 'Inter';color:#e9e9ed;letter-spacing:-.03em">{{ reachable }}</span>
+            <span style="font:400 13px/1 'Inter';color:{{ deltaColor }}">{{ deltaLabel }}</span>
+          </div>
+          <div style="margin-top:8px;font:400 13px/1.45 'Inter';color:rgba(233,233,237,.45)">{{ reachableCaption }}</div>
+        </div>
+        <div>
+          <div style="font:300 30px/1 'Inter';color:rgba(233,233,237,.62);letter-spacing:-.02em">{{ blockedCount }}</div>
+          <div style="margin-top:7px;font:400 13px/1.45 'Inter';color:rgba(233,233,237,.42)">still beyond the boundary</div>
+        </div>
+      </div>
+
+      <div style="height:1px;background:linear-gradient(90deg,rgba(233,233,237,.13),transparent)"></div>
+
+      <div style="display:flex;flex-direction:column;gap:13px">
+        <div style="font:500 13px/1 'Inter';color:rgba(233,233,237,.72)">Your orbit</div>
+        <div style="display:flex;align-items:center;gap:11px;font:400 12.5px/1 'Inter';color:rgba(233,233,237,.5)"><span style="width:20px;height:1px;background:#d2cefd;flex:none"></span>Ready now</div>
+        <div style="display:flex;align-items:center;gap:11px;font:400 12.5px/1 'Inter';color:rgba(233,233,237,.5)"><span style="width:20px;height:1px;background:#796cbf;flex:none"></span>One gap away</div>
+        <div style="display:flex;align-items:center;gap:11px;font:400 12.5px/1 'Inter';color:rgba(233,233,237,.5)"><span style="width:20px;height:1px;background:repeating-linear-gradient(90deg,rgba(233,233,237,.4) 0 3px,transparent 3px 6px);flex:none"></span>Beyond reach</div>
+      </div>
+
+      <div style="margin-top:auto;font:400 12.5px/1.6 'Inter';color:rgba(233,233,237,.3)">Updated {{ updatedAt }}<br>from 118 tracked roles</div>
+    </div>
+
+    <div style="position:absolute;top:58px;left:252px;right:372px;bottom:0;display:flex;align-items:center;justify-content:center">
+      <svg viewBox="0 0 860 800" style="width:816px;height:760px;overflow:visible">
+        <defs>
+          <radialGradient id="jb-field" cx="50%" cy="50%" r="50%">
+            <stop offset="55%" stop-color="#9184d9" stop-opacity=".13"></stop>
+            <stop offset="100%" stop-color="#9184d9" stop-opacity="0"></stop>
+          </radialGradient>
+          <radialGradient id="jb-core" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#d2cefd" stop-opacity=".55"></stop>
+            <stop offset="100%" stop-color="#9184d9" stop-opacity="0"></stop>
+          </radialGradient>
+        </defs>
+
+        <circle cx="430" cy="400" r="{{ boundaryR }}" fill="url(#jb-field)" style="transition:r 1.1s cubic-bezier(.22,.61,.36,1)"></circle>
+        <circle cx="430" cy="400" r="150" fill="none" stroke="#5d5294" stroke-opacity=".5"></circle>
+        <circle cx="430" cy="400" r="252" fill="none" stroke="#5d5294" stroke-opacity=".32"></circle>
+        <circle cx="430" cy="400" r="{{ ghostR }}" fill="none" stroke="#e9e9ed" stroke-opacity="{{ ghostOpacity }}" stroke-dasharray="2 8" style="transition:stroke-opacity .8s ease"></circle>
+        <circle cx="430" cy="400" r="{{ boundaryR }}" fill="none" stroke="{{ boundaryColor }}" stroke-width="1.3" style="transition:r 1.1s cubic-bezier(.22,.61,.36,1),stroke .8s ease"></circle>
+        <circle cx="430" cy="400" r="{{ boundaryGlowR }}" fill="none" stroke="{{ boundaryColor }}" stroke-width="7" style="filter:blur(9px);animation:jb-alive 6.5s ease-in-out infinite;transition:r 1.1s cubic-bezier(.22,.61,.36,1)"></circle>
+
+        <text x="430" y="122" text-anchor="middle" fill="#b5abfc" fill-opacity="{{ liveLabelOpacity }}" style="font:400 12.5px 'Inter';letter-spacing:.01em;transition:fill-opacity .6s ease">Boundary of reach</text>
+        <text x="430" y="66" text-anchor="middle" fill="#d9a25f" fill-opacity="{{ simLabelOpacity }}" style="font:400 12.5px 'Inter';letter-spacing:.01em;transition:fill-opacity .6s ease">Simulated boundary</text>
+        <text x="430" y="122" text-anchor="middle" fill="#e9e9ed" fill-opacity="{{ ghostLabelOpacity }}" style="font:400 12px 'Inter';transition:fill-opacity .6s ease">previous boundary</text>
+        <text x="452" y="404" style="font:400 12px 'Inter';fill:#e9e9ed;fill-opacity:.3">Ready now</text>
+        <text x="554" y="404" style="font:400 12px 'Inter';fill:#e9e9ed;fill-opacity:.22">One gap away</text>
+
+        <circle cx="430" cy="400" r="52" fill="url(#jb-core)"></circle>
+        <circle cx="430" cy="400" r="18" fill="#141621" stroke="#d2cefd" stroke-width="1.3"></circle>
+        <circle cx="430" cy="400" r="4.5" fill="#e9e9ed"></circle>
+        <text x="430" y="446" text-anchor="middle" style="font:400 12.5px 'Inter';fill:#e9e9ed;fill-opacity:.5">You</text>
+
+        <line x1="430" y1="400" x2="{{ leaderX }}" y2="{{ leaderY }}" stroke="#b5abfc" stroke-opacity="{{ leaderOpacity }}" style="transition:stroke-opacity .5s ease"></line>
+
+        <sc-for list="{{ dots }}" as="n" hint-placeholder-count="7">
+          <g transform="translate({{ n.cx }}, {{ n.cy }})" onClick="{{ n.onClick }}" style="cursor:pointer;transition:transform 1.1s cubic-bezier(.22,.61,.36,1)">
+            <circle r="{{ n.halo }}" fill="{{ n.haloFill }}" fill-opacity="{{ n.haloOpacity }}" style="transition:fill .7s ease,r .5s ease"></circle>
+            <circle r="{{ n.r }}" fill="{{ n.fill }}" stroke="{{ n.stroke }}" stroke-width="{{ n.strokeWidth }}" stroke-dasharray="{{ n.dash }}" style="transition:fill .7s ease,stroke .7s ease"></circle>
+            <circle r="{{ n.inner }}" fill="{{ n.innerFill }}" style="transition:fill .7s ease"></circle>
+          </g>
+        </sc-for>
+
+        <g transform="translate({{ n_spa.cx }}, {{ n_spa.cy }})" onClick="{{ n_spa.onClick }}" style="cursor:pointer;transition:transform 1.1s cubic-bezier(.22,.61,.36,1)">
+          <circle r="{{ n_spa.halo }}" fill="#b5abfc" fill-opacity="{{ n_spa.haloOpacity }}" style="transition:r .5s ease,fill-opacity .5s ease"></circle>
+          <circle r="8" fill="{{ n_spa.fill }}" stroke="{{ n_spa.stroke }}" stroke-width="1.3" style="transition:stroke .7s ease"></circle>
+          <circle r="3.6" fill="{{ n_spa.innerFill }}" style="transition:fill .7s ease"></circle>
+          <text x="20" y="-3" fill="{{ n_spa.titleFill }}" style="font:400 14px 'Inter';letter-spacing:-.005em;transition:fill .7s ease">Senior Product Analyst</text>
+          <text x="20" y="15" fill="{{ n_spa.metaFill }}" style="font:400 12px 'Inter';transition:fill .7s ease">Vessel · remote</text>
+        </g>
+
+        <g transform="translate({{ n_ins.cx }}, {{ n_ins.cy }})" onClick="{{ n_ins.onClick }}" style="cursor:pointer;transition:transform 1.1s cubic-bezier(.22,.61,.36,1)">
+          <circle r="{{ n_ins.halo }}" fill="#b5abfc" fill-opacity="{{ n_ins.haloOpacity }}" style="transition:r .5s ease,fill-opacity .5s ease"></circle>
+          <circle r="7" fill="{{ n_ins.fill }}" stroke="{{ n_ins.stroke }}" stroke-width="1.2" style="transition:stroke .7s ease"></circle>
+          <circle r="3" fill="{{ n_ins.innerFill }}" style="transition:fill .7s ease"></circle>
+          <text x="-19" y="-3" text-anchor="end" fill="{{ n_ins.titleFill }}" style="font:400 14px 'Inter';letter-spacing:-.005em;transition:fill .7s ease">Insights Manager</text>
+          <text x="-19" y="15" text-anchor="end" fill="{{ n_ins.metaFill }}" style="font:400 12px 'Inter';transition:fill .7s ease">Northbeam · remote</text>
+        </g>
+
+        <g transform="translate({{ n_gro.cx }}, {{ n_gro.cy }})" onClick="{{ n_gro.onClick }}" style="cursor:pointer;transition:transform 1.1s cubic-bezier(.22,.61,.36,1)">
+          <circle r="{{ n_gro.halo }}" fill="#b5abfc" fill-opacity="{{ n_gro.haloOpacity }}" style="transition:r .5s ease,fill-opacity .5s ease"></circle>
+          <circle r="5.5" fill="{{ n_gro.fill }}" stroke="{{ n_gro.stroke }}" stroke-width="1.1" style="transition:stroke .7s ease"></circle>
+          <circle r="2.2" fill="{{ n_gro.innerFill }}" style="transition:fill .7s ease"></circle>
+          <text x="17" y="4" fill="{{ n_gro.titleFill }}" style="font:400 13px 'Inter';transition:fill .7s ease">Growth Analyst</text>
+        </g>
+
+        <g transform="translate({{ n_dsp.cx }}, {{ n_dsp.cy }})" onClick="{{ n_dsp.onClick }}" style="cursor:pointer;transition:transform 1.1s cubic-bezier(.22,.61,.36,1)">
+          <circle r="{{ n_dsp.halo }}" fill="{{ n_dsp.haloFill }}" fill-opacity="{{ n_dsp.haloOpacity }}" style="transition:r .5s ease,fill-opacity .5s ease"></circle>
+          <circle r="8" fill="{{ n_dsp.fill }}" stroke="{{ n_dsp.stroke }}" stroke-width="1.3" stroke-dasharray="{{ n_dsp.dash }}" style="transition:stroke .7s ease,fill .7s ease"></circle>
+          <circle r="{{ n_dsp.inner }}" fill="{{ n_dsp.innerFill }}" style="transition:fill .7s ease"></circle>
+          <text x="20" y="-3" fill="{{ n_dsp.titleFill }}" style="font:400 14px 'Inter';letter-spacing:-.005em;transition:fill .7s ease">Data Scientist, Product</text>
+          <text x="20" y="15" fill="{{ n_dsp.metaFill }}" style="font:400 12px 'Inter';transition:fill .7s ease">Ravel · Berlin hybrid</text>
+        </g>
+
+        <g transform="translate({{ n_ald.cx }}, {{ n_ald.cy }})" onClick="{{ n_ald.onClick }}" style="cursor:pointer;transition:transform 1.1s cubic-bezier(.22,.61,.36,1)">
+          <circle r="{{ n_ald.halo }}" fill="{{ n_ald.haloFill }}" fill-opacity="{{ n_ald.haloOpacity }}" style="transition:r .5s ease,fill-opacity .5s ease"></circle>
+          <circle r="7" fill="{{ n_ald.fill }}" stroke="{{ n_ald.stroke }}" stroke-width="1.2" stroke-dasharray="{{ n_ald.dash }}" style="transition:stroke .7s ease,fill .7s ease"></circle>
+          <circle r="{{ n_ald.inner }}" fill="{{ n_ald.innerFill }}" style="transition:fill .7s ease"></circle>
+          <text x="-19" y="-3" text-anchor="end" fill="{{ n_ald.titleFill }}" style="font:400 14px 'Inter';letter-spacing:-.005em;transition:fill .7s ease">Analytics Lead</text>
+          <text x="-19" y="15" text-anchor="end" fill="{{ n_ald.metaFill }}" style="font:400 12px 'Inter';transition:fill .7s ease">Corvid · Amsterdam</text>
+        </g>
+
+        <g transform="translate({{ n_ipe.cx }}, {{ n_ipe.cy }})" onClick="{{ n_ipe.onClick }}" style="cursor:pointer;transition:transform 1.1s cubic-bezier(.22,.61,.36,1)">
+          <circle r="{{ n_ipe.halo }}" fill="{{ n_ipe.haloFill }}" fill-opacity="{{ n_ipe.haloOpacity }}" style="transition:r .5s ease,fill-opacity .5s ease"></circle>
+          <circle r="5.5" fill="{{ n_ipe.fill }}" stroke="{{ n_ipe.stroke }}" stroke-width="1.1" stroke-dasharray="{{ n_ipe.dash }}" style="transition:stroke .7s ease,fill .7s ease"></circle>
+          <circle r="{{ n_ipe.inner }}" fill="{{ n_ipe.innerFill }}" style="transition:fill .7s ease"></circle>
+          <text x="-17" y="4" text-anchor="end" fill="{{ n_ipe.titleFill }}" style="font:400 13px 'Inter';transition:fill .7s ease">Insights Partner, EU</text>
+        </g>
+
+        <g transform="translate({{ n_sds.cx }}, {{ n_sds.cy }})" onClick="{{ n_sds.onClick }}" style="cursor:pointer;transition:transform 1.1s cubic-bezier(.22,.61,.36,1)">
+          <circle r="{{ n_sds.halo }}" fill="#b5abfc" fill-opacity="{{ n_sds.haloOpacity }}" style="transition:r .5s ease,fill-opacity .5s ease"></circle>
+          <circle r="6" fill="transparent" stroke="{{ n_sds.stroke }}" stroke-width="1.1" stroke-dasharray="2 3" style="transition:stroke .7s ease"></circle>
+          <text x="18" y="-3" fill="{{ n_sds.titleFill }}" style="font:400 13.5px 'Inter';transition:fill .7s ease">Staff Data Scientist</text>
+          <text x="18" y="15" fill="{{ n_sds.metaFill }}" style="font:400 12px 'Inter';transition:fill .7s ease">needs intermediate SQL</text>
+        </g>
+      </svg>
+    </div>
+
+    <div style="position:absolute;top:58px;right:0;width:372px;bottom:0;padding:30px 28px 26px;border-left:1px solid rgba(233,233,237,.06);display:flex;flex-direction:column;gap:22px">
+
+      <sc-if value="{{ showBrowse }}" hint-placeholder-val="{{ true }}">
+        <div style="display:flex;flex-direction:column;gap:20px">
+          <div>
+            <div style="font:500 15px/1.3 'Inter';color:#e9e9ed">Closest to your boundary</div>
+            <div style="margin-top:7px;font:400 13px/1.55 'Inter';color:rgba(233,233,237,.42)">Four roles sit one constraint outside your current orbit. Select one to see what holds it there.</div>
+          </div>
+          <div style="display:flex;flex-direction:column">
+            <sc-for list="{{ nearby }}" as="o" hint-placeholder-count="4">
+              <div onClick="{{ o.onClick }}" style="display:flex;justify-content:space-between;align-items:baseline;gap:16px;padding:15px 0;border-top:1px solid rgba(233,233,237,.07);cursor:pointer" style-hover="background:rgba(233,233,237,.02)">
+                <div>
+                  <div style="font:400 14px/1.35 'Inter';color:{{ o.titleColor }}">{{ o.title }}</div>
+                  <div style="margin-top:5px;font:400 12.5px/1.4 'Inter';color:rgba(233,233,237,.4)">{{ o.company }}</div>
+                </div>
+                <div style="font:400 12.5px/1.4 'Inter';color:{{ o.stateColor }};white-space:nowrap">{{ o.state }}</div>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </sc-if>
+
+      <sc-if value="{{ showDetail }}" hint-placeholder-val="{{ false }}">
+        <div style="display:flex;flex-direction:column;gap:24px">
+          <div>
+            <div style="font:400 12.5px/1 'Inter';color:{{ detailKickerColor }}">{{ detailKicker }}</div>
+            <div style="margin-top:11px;font:500 24px/1.25 'Inter';color:#e9e9ed;letter-spacing:-.02em">{{ detailTitle }}</div>
+            <div style="margin-top:8px;font:400 13.5px/1.55 'Inter';color:rgba(233,233,237,.48)">{{ detailCompany }}</div>
+          </div>
+
+          <div style="display:flex;gap:36px">
+            <div>
+              <div style="font:300 26px/1 'Inter';color:#e9e9ed;letter-spacing:-.02em">{{ detailReach }}</div>
+              <div style="margin-top:7px;font:400 12.5px 'Inter';color:rgba(233,233,237,.4)">reachability</div>
+            </div>
+            <div>
+              <div style="font:300 26px/1 'Inter';color:#e9e9ed;letter-spacing:-.02em">{{ detailSimilar }}</div>
+              <div style="margin-top:7px;font:400 12.5px 'Inter';color:rgba(233,233,237,.4)">similar roles</div>
+            </div>
+            <div>
+              <div style="font:300 26px/1 'Inter';color:#e9e9ed;letter-spacing:-.02em">{{ detailPay }}</div>
+              <div style="margin-top:7px;font:400 12.5px 'Inter';color:rgba(233,233,237,.4)">median</div>
+            </div>
+          </div>
+
+          <div>
+            <div style="font:500 13.5px/1 'Inter';color:rgba(233,233,237,.72)">{{ debuggerHeading }}</div>
+            <div style="margin-top:4px">
+              <sc-for list="{{ blockers }}" as="b" hint-placeholder-count="2">
+                <div style="display:flex;justify-content:space-between;align-items:baseline;gap:14px;padding:14px 0;border-bottom:1px solid rgba(233,233,237,.07)">
+                  <div>
+                    <div style="font:400 13.5px/1.35 'Inter';color:{{ b.color }}">{{ b.label }}</div>
+                    <div style="margin-top:5px;font:400 12.5px/1.45 'Inter';color:rgba(233,233,237,.4)">{{ b.detail }}</div>
+                  </div>
+                  <div style="font:400 12.5px 'Inter';color:{{ b.effectColor }};white-space:nowrap">{{ b.effect }}</div>
+                </div>
+              </sc-for>
+            </div>
+          </div>
+
+          <sc-if value="{{ showUnlockCard }}" hint-placeholder-val="{{ false }}">
+            <div style="padding:20px;border-radius:10px;border:1px solid rgba(217,162,95,.26);background:linear-gradient(180deg,rgba(217,162,95,.08),rgba(217,162,95,.02))">
+              <div style="font:400 12.5px/1 'Inter';color:#d9a25f">Opportunity unlock</div>
+              <div style="margin-top:12px;font:400 19px/1.35 'Inter';color:#f0dcc0;letter-spacing:-.01em">23 opportunities entered your orbit</div>
+              <div style="margin-top:12px;font:400 13px/1.6 'Inter';color:rgba(233,233,237,.55)">Data Scientist · Analytics Lead · Insights Partner, EU — and 20 more across 14 companies. Median pay rises to €71k.</div>
+              <div style="margin-top:16px;font:400 13px/1.6 'Inter';color:rgba(233,233,237,.4)">One role stays out: Staff Data Scientist still needs intermediate SQL.</div>
+            </div>
+          </sc-if>
+
+          <div style="margin-top:auto;display:flex;gap:10px">
+            <button onClick="{{ primaryAction }}" style="flex:1;padding:11px 16px;border-radius:8px;border:1px solid {{ primaryBorder }};background:transparent;font:400 13.5px 'Inter';color:{{ primaryColor }};cursor:pointer" style-hover="background:rgba(233,233,237,.04)">{{ primaryLabel }}</button>
+            <button onClick="{{ clearSelection }}" style="padding:11px 16px;border-radius:8px;border:1px solid transparent;background:transparent;font:400 13.5px 'Inter';color:rgba(233,233,237,.5);cursor:pointer" style-hover="color:#e9e9ed">Close</button>
+          </div>
+        </div>
+      </sc-if>
+    </div>
+
+    <div style="position:absolute;left:288px;bottom:26px;display:flex;align-items:center;gap:22px;padding:12px 18px;border-radius:12px;border:1px solid {{ stripBorder }};background:rgba(16,18,28,.82);backdrop-filter:blur(14px)">
+      <span style="font:400 13px/1 'Inter';color:rgba(233,233,237,.42)">Location</span>
+      <div style="display:flex;gap:2px;padding:3px;border-radius:8px;background:rgba(233,233,237,.05)">
+        <button onClick="{{ setRemote }}" style="padding:7px 14px;border-radius:6px;border:none;background:{{ remoteBg }};font:400 13px 'Inter';color:{{ remoteColor }};cursor:pointer">Remote only</button>
+        <button onClick="{{ setFlexible }}" style="padding:7px 14px;border-radius:6px;border:none;background:{{ flexBg }};font:400 13px 'Inter';color:{{ flexColor }};cursor:pointer">Flexible</button>
+      </div>
+      <div style="width:1px;height:22px;background:rgba(233,233,237,.1)"></div>
+      <span style="font:400 13px/1 'Inter';color:rgba(233,233,237,.55)">Salary ≥ €65k</span>
+      <span style="font:400 13px/1 'Inter';color:rgba(233,233,237,.55)">Senior level</span>
+      <div style="width:1px;height:22px;background:rgba(233,233,237,.1)"></div>
+      <span style="font:400 13px/1 'Inter';color:{{ stripStateColor }}">{{ stripState }}</span>
+    </div>
+  </div>
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1520,&quot;height&quot;:1060}}">
+const D = 180 / Math.PI;
+const NODES = [
+  { id: 'spa', title: 'Senior Product Analyst', meta: 'Vessel · remote', a: -38, r: 172, size: 8, tier: 'ready', reach: '0.92', similar: 14, pay: '€68k' },
+  { id: 'ins', title: 'Insights Manager', meta: 'Northbeam · remote', a: 158, r: 200, size: 7, tier: 'ready', reach: '0.86', similar: 9, pay: '€64k' },
+  { id: 'gro', title: 'Growth Analyst', meta: 'Lumen', a: 74, r: 148, size: 5.5, tier: 'ready', reach: '0.9', similar: 11, pay: '€59k' },
+  { id: 'lif', title: '', meta: '', a: -108, r: 214, size: 4.5, tier: 'ready' },
+  { id: 'rev', title: '', meta: '', a: 26, r: 236, size: 4, tier: 'ready' },
+  { id: 'ops', title: '', meta: '', a: 118, r: 224, size: 3.5, tier: 'ready' },
+  { id: 'dsp', title: 'Data Scientist, Product', meta: 'Ravel · Berlin hybrid', a: -64, r: 352, rSim: 246, size: 8, tier: 'gated', reach: '0.71', similar: 14, pay: '€74k' },
+  { id: 'ald', title: 'Analytics Lead', meta: 'Corvid · Amsterdam', a: -146, r: 340, rSim: 262, size: 7, tier: 'gated', reach: '0.68', similar: 8, pay: '€79k' },
+  { id: 'ipe', title: 'Insights Partner, EU', meta: 'Halden · hybrid', a: 132, r: 364, rSim: 284, size: 5.5, tier: 'gated', reach: '0.64', similar: 6, pay: '€72k' },
+  { id: 'exp', title: '', meta: '', a: 6, r: 348, rSim: 290, size: 4.5, tier: 'gated' },
+  { id: 'exq', title: '', meta: '', a: 52, r: 356, rSim: 296, size: 4, tier: 'gated' },
+  { id: 'sds', title: 'Staff Data Scientist', meta: 'needs intermediate SQL', a: -16, r: 396, size: 6, tier: 'blocked', reach: '0.41', similar: 12, pay: '€92k' },
+  { id: 'qnt', title: '', meta: '', a: 176, r: 392, size: 4.5, tier: 'blocked' },
+  { id: 'mle', title: '', meta: '', a: 96, r: 400, size: 4, tier: 'blocked' }
+];
+
+class Component extends DCLogic {
+  state = { sim: false, sel: null };
+
+  pick(id) { this.setState({ sel: id }); }
+
+  renderVals() {
+    const sim = this.state.sim;
+    const selId = this.state.sel;
+    const sel = NODES.find(n => n.id === selId) || null;
+    const boundaryR = sim ? 318 : 262;
+    const cx = 430, cy = 400;
+
+    const nodes = NODES.map(n => {
+      const unlocked = sim && n.tier === 'gated';
+      const r = unlocked ? n.rSim : n.r;
+      const rad = n.a / D;
+      const isSel = n.id === selId;
+      const outside = n.tier === 'blocked' || (n.tier === 'gated' && !sim);
+      const east = Math.cos(rad) >= -0.15;
+      let stroke, fill, innerFill, titleFill, metaFill, dash = '';
+      if (unlocked) {
+        stroke = '#d9a25f'; fill = '#141621'; innerFill = '#d9a25f';
+        titleFill = '#f0dcc0'; metaFill = 'rgba(217,162,95,.7)';
+      } else if (outside) {
+        stroke = 'rgba(233,233,237,.3)'; fill = 'transparent'; innerFill = 'transparent';
+        titleFill = 'rgba(233,233,237,.4)'; metaFill = 'rgba(233,233,237,.26)'; dash = '2 3';
+      } else {
+        stroke = n.size >= 7 ? '#d2cefd' : '#968ae0'; fill = '#141621';
+        innerFill = n.size >= 7 ? '#d2cefd' : 'rgba(150,138,224,.85)';
+        titleFill = 'rgba(233,233,237,.9)'; metaFill = 'rgba(233,233,237,.38)';
+      }
+      return {
+        cx: (cx + r * Math.cos(rad)).toFixed(1),
+        cy: (cy + r * Math.sin(rad)).toFixed(1),
+        r: n.size, inner: outside ? 0 : Math.max(2, n.size - 4.2),
+        strokeWidth: n.size >= 7 ? 1.3 : 1.1,
+        halo: isSel ? n.size + 12 : unlocked ? n.size + 7 : 0,
+        haloFill: isSel ? '#b5abfc' : '#d9a25f',
+        haloOpacity: isSel ? 0.16 : unlocked ? 0.13 : 0,
+        stroke: isSel ? '#e9e9ed' : stroke,
+        fill, innerFill, dash, titleFill, metaFill,
+        title: n.title, meta: n.meta,
+        tx: east ? n.size + 12 : -(n.size + 12),
+        anchor: east ? 'start' : 'end',
+        onClick: () => this.pick(n.id)
+      };
+    });
+
+    const nearby = [
+      { id: 'dsp', title: 'Data Scientist, Product', company: 'Ravel · Berlin hybrid' },
+      { id: 'ald', title: 'Analytics Lead', company: 'Corvid · Amsterdam' },
+      { id: 'ipe', title: 'Insights Partner, EU', company: 'Halden · hybrid' },
+      { id: 'sds', title: 'Staff Data Scientist', company: 'Meridian · London' }
+    ].map(o => {
+      const n = NODES.find(x => x.id === o.id);
+      const unlocked = sim && n.tier === 'gated';
+      return {
+        title: o.title, company: o.company,
+        titleColor: unlocked ? '#f0dcc0' : 'rgba(233,233,237,.88)',
+        state: unlocked ? 'in orbit' : n.tier === 'blocked' ? 'needs SQL' : 'location',
+        stateColor: unlocked ? '#d9a25f' : 'rgba(233,233,237,.35)',
+        onClick: () => this.pick(o.id)
+      };
+    });
+
+    const selUnlocked = sel && sim && sel.tier === 'gated';
+    let blockers = [];
+    let debuggerHeading = 'Constraint debugger';
+    if (sel) {
+      if (sel.tier === 'gated') {
+        blockers = [
+          {
+            label: sim ? 'Location · relaxed to Flexible' : 'Location · Remote only',
+            detail: sim ? 'Two days a week on-site, within reach of Lagos' : 'This role is hybrid two days a week',
+            effect: sim ? 'resolved' : '+23 if relaxed',
+            color: sim ? '#f0dcc0' : 'rgba(233,233,237,.85)',
+            effectColor: sim ? '#d9a25f' : 'rgba(233,233,237,.45)'
+          },
+          { label: 'SQL depth · basic', detail: 'Intermediate is preferred, not required here', effect: 'soft', color: 'rgba(233,233,237,.85)', effectColor: 'rgba(233,233,237,.35)' },
+          { label: 'Salary floor · €65k', detail: 'Satisfied — this role posts at €74k', effect: 'met', color: 'rgba(233,233,237,.6)', effectColor: 'rgba(233,233,237,.3)' }
+        ];
+      } else if (sel.tier === 'blocked') {
+        blockers = [
+          { label: 'SQL depth · basic', detail: 'Intermediate needed — about six weeks of work', effect: '+14 roles', color: 'rgba(233,233,237,.85)', effectColor: 'rgba(233,233,237,.45)' },
+          { label: sim ? 'Location · Flexible' : 'Location · Remote only', detail: sim ? 'No longer blocking this role' : 'London, three days on-site', effect: sim ? 'resolved' : 'blocking', color: 'rgba(233,233,237,.85)', effectColor: sim ? '#d9a25f' : 'rgba(233,233,237,.45)' }
+        ];
+      } else {
+        debuggerHeading = 'Why this is in reach';
+        blockers = [
+          { label: 'Every constraint satisfied', detail: 'Remote, senior level, above your salary floor', effect: 'ready', color: 'rgba(233,233,237,.85)', effectColor: 'rgba(233,233,237,.35)' },
+          { label: 'Evidence · 4 years of product analytics', detail: 'Strongest overlap of any role in your orbit', effect: '0.92', color: 'rgba(233,233,237,.6)', effectColor: 'rgba(233,233,237,.3)' }
+        ];
+      }
+    }
+
+    const leader = sel ? (() => {
+      const n = sel, r = (sim && n.tier === 'gated') ? n.rSim : n.r, rad = n.a / D;
+      return { x: (cx + r * Math.cos(rad)).toFixed(1), y: (cy + r * Math.sin(rad)).toFixed(1) };
+    })() : { x: cx, y: cy };
+
+    const byId = {};
+    NODES.forEach((n, i) => { byId['n_' + n.id] = nodes[i]; });
+    const dots = nodes.filter((_, i) => !NODES[i].title);
+
+    return Object.assign(byId, {
+      dots, nearby, blockers, debuggerHeading,
+      liveLabelOpacity: sim ? 0 : 0.85,
+      simLabelOpacity: sim ? 0.9 : 0,
+      ghostLabelOpacity: sim ? 0.3 : 0,
+      reachable: sim ? 54 : 31,
+      deltaLabel: sim ? '+23' : '',
+      deltaColor: '#d9a25f',
+      reachableCaption: sim ? 'in reach under simulation · 31 before' : 'opportunities in reach today',
+      blockedCount: sim ? 9 : 32,
+      updatedAt: '11 minutes ago',
+      agentNote: sim ? 'Agent re-scored 118 roles · 12s ago' : 'Agent enriched 41 postings · 11m ago',
+      boundaryR, ghostR: 262,
+      ghostOpacity: sim ? 0.22 : 0,
+      boundaryColor: sim ? '#d9a25f' : '#b5abfc',
+      boundaryGlowR: boundaryR,
+      boundaryLabel: sim ? 'Simulated boundary' : 'Boundary of reach',
+      boundaryLabelY: 400 - boundaryR - 16,
+      leaderX: leader.x, leaderY: leader.y,
+      leaderOpacity: sel ? 0.32 : 0,
+      showBrowse: !sel, showDetail: !!sel,
+      showUnlockCard: !!selUnlocked,
+      detailKicker: selUnlocked ? 'Newly reachable' : sel ? (sel.tier === 'ready' ? 'In your orbit' : 'Outside your boundary') : '',
+      detailKickerColor: selUnlocked ? '#d9a25f' : 'rgba(233,233,237,.42)',
+      detailTitle: sel ? (sel.title || 'Product Operations Analyst') : '',
+      detailCompany: sel ? (sel.meta || 'Sable · remote') : '',
+      detailReach: sel ? (selUnlocked ? '0.83' : sel.reach || '0.7') : '',
+      detailSimilar: sel ? sel.similar || 7 : '',
+      detailPay: sel ? sel.pay || '€66k' : '',
+      primaryLabel: sel && sel.tier === 'gated' && !sim ? 'Simulate flexible location' : sel && sel.tier === 'blocked' ? 'Plan the SQL step' : 'Save to shortlist',
+      primaryBorder: sel && sel.tier === 'gated' && !sim ? 'rgba(217,162,95,.5)' : 'rgba(145,132,217,.55)',
+      primaryColor: sel && sel.tier === 'gated' && !sim ? '#f0dcc0' : '#d2cefd',
+      primaryAction: () => { if (sel && sel.tier === 'gated' && !sim) this.setState({ sim: true }); },
+      clearSelection: () => this.setState({ sel: null }),
+      setRemote: () => this.setState({ sim: false }),
+      setFlexible: () => this.setState({ sim: true }),
+      remoteBg: sim ? 'transparent' : 'rgba(233,233,237,.1)',
+      remoteColor: sim ? 'rgba(233,233,237,.45)' : '#e9e9ed',
+      flexBg: sim ? 'rgba(217,162,95,.16)' : 'transparent',
+      flexColor: sim ? '#f0dcc0' : 'rgba(233,233,237,.45)',
+      stripBorder: sim ? 'rgba(217,162,95,.32)' : 'rgba(233,233,237,.1)',
+      stripState: sim ? 'Simulation · +23 unlocked, unsaved' : 'Live orbit',
+      stripStateColor: sim ? '#d9a25f' : 'rgba(233,233,237,.38)',
+      showOrbit: () => this.setState({ sim: false, sel: null }),
+      showSelected: () => this.setState({ sim: false, sel: 'dsp' }),
+      showSim: () => this.setState({ sim: true, sel: 'dsp' })
+    });
+  }
+}
+
+</script>
+</body>
+</html>

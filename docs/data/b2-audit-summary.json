@@ -1,0 +1,473 @@
+{
+  "metadata": {
+    "audit_date": "2026-08-26",
+    "task": "B2 - Data Coverage Audit (Constitution \u00a711.2)",
+    "sources": [
+      "JobsCollider",
+      "Arbeitnow",
+      "Jobicy"
+    ]
+  },
+  "audits": {
+    "JobsCollider": {
+      "source": "JobsCollider",
+      "total_jobs": 7919,
+      "description_pct": 100.0,
+      "description_has_html_pct": 100.0,
+      "avg_desc_length": 6778.4,
+      "salary_structured_pct": 47.44,
+      "salary_min_pct": 47.37,
+      "salary_max_pct": 47.44,
+      "salary_samples": [
+        "$120,640 - $193,752 (USD/yr)",
+        "$96,408 - $166,920 (USD/yr)",
+        "$189,000 - $200,000 (USD/yr)",
+        "$130,000 - $200,000 (USD/yr)",
+        "$47,109 - $57,255 (USD/yr)"
+      ],
+      "seniority_pct": 100.0,
+      "seniority_distribution": {
+        "middle": 3090,
+        "senior": 2089,
+        "manager": 1130,
+        "director": 570,
+        "entry_level": 434,
+        "principal": 233,
+        "executive": 167,
+        "staff": 109,
+        "intern": 97
+      },
+      "remote_field_pct": 100.0,
+      "remote_true_pct": 100.0,
+      "onsite_true_pct": 0.0,
+      "remote_distribution": {
+        "100% Remote": 7919
+      },
+      "location_pct": 66.04,
+      "location_types": {
+        "Structured Country/Region Array": 5230
+      },
+      "location_samples": [
+        "United Kingdom",
+        "United Kingdom",
+        "Ireland",
+        "United Kingdom",
+        "United Kingdom"
+      ],
+      "visa_field_pct": 0.0,
+      "visa_flag_count": 0,
+      "visa_mention_desc_pct": 3.4,
+      "visa_mention_desc_count": 269,
+      "employment_type_pct": 0.0,
+      "employment_type_dist": {},
+      "categories_count": 16,
+      "top_categories": {
+        "customer_service": 500,
+        "finance_legal": 500,
+        "business": 500,
+        "product": 500,
+        "software_development": 500,
+        "devops": 500,
+        "marketing": 500,
+        "human_resources": 500,
+        "sales": 500,
+        "project_management": 500,
+        "cybersecurity": 500,
+        "data": 500,
+        "writing": 500,
+        "all_others": 500,
+        "design": 500
+      },
+      "archetype_mapping_total_jobs": 493,
+      "archetype_mapping_pct": 6.23,
+      "archetype_breakdown": {
+        "Project Manager": 132,
+        "Program Manager": 85,
+        "Customer Success Manager": 74,
+        "Revenue Operations": 42,
+        "Data Analyst": 36,
+        "Business Analyst": 29,
+        "Operations Analyst": 23,
+        "Implementation Specialist": 20,
+        "Implementation Consultant": 15,
+        "Customer Success Operations": 12,
+        "Business Operations": 9,
+        "Project Coordinator": 8,
+        "Product Operations": 6,
+        "Customer Success Specialist": 5
+      },
+      "archetype_sample_titles": {
+        "Project Manager": [
+          "Energy Efficiency Project Manager I (Remote - US)",
+          "Project Manager - Medical Communications",
+          "Project Manager \u2013 Oracle HCM Cloud"
+        ],
+        "Customer Success Manager": [
+          "Customer Success Manager II, SMB Account Strategy",
+          "Customer Success Manager II",
+          "Enterprise Customer Success Manager"
+        ],
+        "Data Analyst": [
+          "Senior Data Analyst",
+          "Staff Data Analyst",
+          "Senior Data Analyst, B2B"
+        ],
+        "Revenue Operations": [
+          "Sales Operations Specialist (Heartland)",
+          "Sales Operations Manager",
+          "Marketing Operations Manager"
+        ],
+        "Business Analyst": [
+          "Business Analyst",
+          "Business Analyst",
+          "SAP Business Analyst (Success Factors)"
+        ],
+        "Project Coordinator": [
+          "Partner Marketing Project Coordinator",
+          "Construction Project Coordinator",
+          "Facilities Facilities Project Coordinator"
+        ],
+        "Customer Success Operations": [
+          "Director, Customer Success Operations",
+          "Director, Customer Operations Vendor Strategy & Execution",
+          "Director, Customer Operations Vendor Strategy & Execution"
+        ],
+        "Program Manager": [
+          "Principal Technical Program Manager, Product FinTech",
+          "Senior Technical Program Manager",
+          "Program Manager"
+        ],
+        "Operations Analyst": [
+          "Market Operations Analyst",
+          "Operational Analyst \u2013 Co-op Student (Remote Hospitality West)",
+          "Revenue Operations Analyst II"
+        ],
+        "Business Operations": [
+          "Business Operations Senior Associate",
+          "Senior Manager\u2013 Sales Strategy & Business Operations",
+          "Business Operations Manager"
+        ],
+        "Implementation Consultant": [
+          "Senior Strategic Implementation Consultant",
+          "Senior Implementation Consultant, Audit",
+          "Enterprise Core Implementation Consultant - East/Central"
+        ],
+        "Implementation Specialist": [
+          "OneTrust Third-Party Risk Management (TPRM) Implementation Specialist",
+          "Senior Strategic Implementation Specialist - Americas (West)",
+          "Customer Onboarding Specialist"
+        ],
+        "Customer Success Specialist": [
+          "Customer Success Representative I",
+          "Client Success Specialist (LegalTech)",
+          "Customer Success Specialist (LegalTech)"
+        ],
+        "Product Operations": [
+          "Product Operations Associate",
+          "Product Operations Specialist",
+          "Product Operations & Strategy Lead"
+        ]
+      }
+    },
+    "Arbeitnow": {
+      "source": "Arbeitnow",
+      "total_jobs": 2191,
+      "description_pct": 100.0,
+      "description_has_html_pct": 100.0,
+      "avg_desc_length": 6476.6,
+      "salary_structured_pct": 0.0,
+      "salary_min_pct": 0.0,
+      "salary_max_pct": 0.0,
+      "salary_samples": [],
+      "seniority_pct": 35.51,
+      "seniority_distribution": {
+        "berufserfahren": 202,
+        "Entry": 102,
+        "Directors": 60,
+        "Student": 55,
+        "Working student": 49,
+        "Student college": 32,
+        "Team Leader": 23,
+        "Internship": 22,
+        "Werkstudent": 19,
+        "Social Media Manager": 17
+      },
+      "remote_field_pct": 100.0,
+      "remote_true_pct": 7.8,
+      "onsite_true_pct": 92.2,
+      "remote_distribution": {
+        "Onsite/Hybrid (false)": 2020,
+        "Remote (true)": 171
+      },
+      "location_pct": 97.54,
+      "location_types": {
+        "City / Region String": 2137
+      },
+      "location_samples": [
+        "Hamburg",
+        "Stuttgart",
+        "Hannover",
+        "Konz",
+        "Puchheim"
+      ],
+      "visa_field_pct": 6.85,
+      "visa_flag_count": 150,
+      "visa_mention_desc_pct": 1.23,
+      "visa_mention_desc_count": 27,
+      "employment_type_pct": 68.46,
+      "employment_type_dist": {
+        "Experienced": 386,
+        "Full time": 354,
+        "Permanent": 314,
+        "Full Time": 240,
+        "berufserfahren": 215,
+        "fulltime permanent": 152,
+        "Entry": 134,
+        "Part time": 128,
+        "Working student": 113,
+        "Intern": 96
+      },
+      "categories_count": 2026,
+      "top_categories": {
+        "Remote": 153,
+        "Engineering": 125,
+        "Finance": 106,
+        "Marketing and Communication": 100,
+        "IT": 83,
+        "Software Development": 66,
+        "Sales": 63,
+        "Directors": 60,
+        "Chief Executives": 60,
+        "Consulting": 41,
+        "Marketing": 41,
+        "Operations": 36,
+        "Product": 30,
+        "AI": 29,
+        "Project Management": 27
+      },
+      "archetype_mapping_total_jobs": 68,
+      "archetype_mapping_pct": 3.1,
+      "archetype_breakdown": {
+        "Project Manager": 17,
+        "Data Analyst": 12,
+        "Customer Success Manager": 11,
+        "Business Analyst": 8,
+        "Revenue Operations": 6,
+        "Program Manager": 3,
+        "Business Operations": 3,
+        "Operations Analyst": 2,
+        "Customer Success Specialist": 2,
+        "Customer Success Operations": 1,
+        "Implementation Specialist": 1,
+        "Product Operations": 1,
+        "Implementation Consultant": 1
+      },
+      "archetype_sample_titles": {
+        "Project Manager": [
+          "Senior Strategic Project Manager (m/w/d) \u2013 M\u00fcnchen",
+          "Technical Project Manager \u2013 Software Development (m/w/d)",
+          "Data Centre Construction Project Manager"
+        ],
+        "Data Analyst": [
+          "Data Analyst (m/w/d) \u2013 BI, Reporting & Business Insights",
+          "Data Analyst",
+          "Data Analyst:in Fundraising (m/w/d)"
+        ],
+        "Operations Analyst": [
+          "Security Operations Analyst- 6 month FTC",
+          "Graduate Trading Operations Analyst"
+        ],
+        "Customer Success Manager": [
+          "Senior Client Success Manager - Influencer Marketing (Freelance) | UK",
+          "Senior Business Consultant ServiceNow mit Schwerpunkt CRM/CSM (m/w/d)",
+          "Customer Success Manager*in (m/w/d)"
+        ],
+        "Program Manager": [
+          "Senior Product Owner / Program Manager (m/f/d)",
+          "Senior Program Manager",
+          "Senior Program Manager, Onboarding (m/w/d)"
+        ],
+        "Business Analyst": [
+          "Technical Business Analyst (d/f/m)",
+          "Technical Business Analyst (m/w/d)",
+          "Senior Business Systems Analyst"
+        ],
+        "Revenue Operations": [
+          "Marketing Operations & Automation Manager",
+          "Lead Revenue Operations (f/m/d)",
+          "Revenue Operations Intern (w,m,x)"
+        ],
+        "Customer Success Operations": [
+          "Praktikant - Customer Operations & Process Optimization (f/m/x)"
+        ],
+        "Business Operations": [
+          "Werkstudent:in Business Operations",
+          "Senior Analyst Business Operations (w/m/d)",
+          "CEO Assistant & Business Operations / Berlin / Hybrid - Voll- oder Teilzeit"
+        ],
+        "Implementation Specialist": [
+          "Senior Implementation Specialist Digital Analytics (w/m/d)"
+        ],
+        "Product Operations": [
+          "Product Operations Intern/Working Student (f/m/d)"
+        ],
+        "Customer Success Specialist": [
+          "Customer Success Specialist (m/w/d)",
+          "Customer Success Associate - Renewable Energy"
+        ],
+        "Implementation Consultant": [
+          "Implementation Manager - Healthcare AI & Workforce Transformation"
+        ]
+      }
+    },
+    "Jobicy": {
+      "source": "Jobicy",
+      "total_jobs": 1459,
+      "description_pct": 99.93,
+      "description_has_html_pct": 99.93,
+      "avg_desc_length": 7061.2,
+      "salary_structured_pct": 47.29,
+      "salary_min_pct": 47.16,
+      "salary_max_pct": 46.2,
+      "salary_samples": [
+        "USD78,000 - 83,500 (yearly)",
+        "USD135,000 - 160,000 (yearly)",
+        "USD195,000 - 260,000 (yearly)",
+        "USD50 - 1,000 (monthly)",
+        "USD195,000 - 362,000 (yearly)"
+      ],
+      "seniority_pct": 100.0,
+      "seniority_distribution": {
+        "Senior": 613,
+        "Director": 324,
+        "Midweight": 274,
+        "Any": 190,
+        "Entry-Level, Junior": 58
+      },
+      "remote_field_pct": 100.0,
+      "remote_true_pct": 100.0,
+      "onsite_true_pct": 0.0,
+      "remote_distribution": {
+        "Remote (USA)": 641,
+        "Remote (Anywhere)": 95,
+        "Remote (Europe)": 65,
+        "Remote (Canada)": 58,
+        "Remote (EMEA)": 54,
+        "Remote (UK)": 49
+      },
+      "location_pct": 100.0,
+      "location_types": {
+        "Geo / Region Tag": 1459
+      },
+      "location_samples": [
+        "USA",
+        "USA",
+        "France,  UK",
+        "USA",
+        "USA"
+      ],
+      "visa_field_pct": 0.0,
+      "visa_flag_count": 0,
+      "visa_mention_desc_pct": 2.4,
+      "visa_mention_desc_count": 35,
+      "employment_type_pct": 100.0,
+      "employment_type_dist": {
+        "Full-Time": 1375,
+        "Contract": 46,
+        "Part-Time": 38
+      },
+      "categories_count": 22,
+      "top_categories": {
+        "Sales": 200,
+        "Software Engineering": 183,
+        "Customer Support & Success": 157,
+        "Product & Operations": 152,
+        "Business Development": 78,
+        "Data Science & Analytics": 77,
+        "Technical Support": 66,
+        "Legal & Compliance": 65,
+        "Finance & Accounting": 58,
+        "Marketing & Sales": 52,
+        "DevOps & Infrastructure": 50,
+        "Healthcare & Medical": 48,
+        "Project & Program Management": 42,
+        "Cybersecurity": 39,
+        "HR & Recruiting": 35
+      },
+      "archetype_mapping_total_jobs": 131,
+      "archetype_mapping_pct": 8.98,
+      "archetype_breakdown": {
+        "Customer Success Manager": 54,
+        "Project Manager": 22,
+        "Program Manager": 16,
+        "Revenue Operations": 9,
+        "Data Analyst": 8,
+        "Business Analyst": 6,
+        "Customer Success Operations": 6,
+        "Implementation Specialist": 4,
+        "Customer Success Specialist": 3,
+        "Implementation Consultant": 2,
+        "Product Operations": 2,
+        "Operations Analyst": 1
+      },
+      "archetype_sample_titles": {
+        "Data Analyst": [
+          "Chargebacks Data Analyst (BR)",
+          "Chargeback Data Analyst (MX)",
+          "Data Analyst (Product & Customer Analytics)"
+        ],
+        "Customer Success Manager": [
+          "Manager I, Customer Success Manager",
+          "Senior Customer Success Manager",
+          "Technical Customer Success Manager"
+        ],
+        "Program Manager": [
+          "Program Manager Facility Design, Data Centers - Remote (U.S.)",
+          "Senior Technical Program Manager - Security",
+          "Technical Program Manager, Infrastructure"
+        ],
+        "Implementation Consultant": [
+          "Implementation Consultant, Advisory",
+          "Implementation Consultant"
+        ],
+        "Implementation Specialist": [
+          "Implementation Specialist - Karbon Expert (Contract)",
+          "Customer Onboarding Specialist",
+          "Senior Payroll Implementation Specialist - NL & Belgium"
+        ],
+        "Business Analyst": [
+          "Senior Business Analyst - Health Insurance (Fully Remote)",
+          "Costpoint Cognos Report Writer and General Ledger Business Analyst",
+          "Senior Business Analyst, AI & Data"
+        ],
+        "Project Manager": [
+          "Customer Project Manager for TnT",
+          "Project Manager II",
+          "Senior Project Manager I"
+        ],
+        "Customer Success Operations": [
+          "Director, Customer Operations Vendor Strategy & Execution",
+          "(US) Customer Operations Launch Manager - 1 Year Contract",
+          "Director of Customer Success Operations"
+        ],
+        "Customer Success Specialist": [
+          "Customer Success Specialist",
+          "Customer Success Specialist",
+          "Customer Success Associate"
+        ],
+        "Revenue Operations": [
+          "Lifecycle Marketing Operations Manager, Firefox Mobile",
+          "Marketing Operations and CRM Expert (Hubspot)",
+          "Principal Revenue Operations Manager"
+        ],
+        "Product Operations": [
+          "Product Operations Lead",
+          "Associate Product Operations Manager"
+        ],
+        "Operations Analyst": [
+          "Sales Operations Analyst II"
+        ]
+      }
+    }
+  }
+}
